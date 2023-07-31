@@ -19,10 +19,14 @@ class App extends Component {
   onInput = evt => {
     evt.preventDefault();
 
-    const inputName = evt.currentTarget.name.value;
-    const inputNumber = evt.currentTarget.number.value;
+    const inputName = evt.currentTarget.name.value.trim();
+    const inputNumber = evt.currentTarget.number.value.trim();
 
-    if (this.state.contacts.find(el => el.name === inputName)) {
+    if (
+      this.state.contacts.find(
+        el => el.name.toLocaleLowerCase() === inputName.toLocaleLowerCase()
+      )
+    ) {
       alert(`${inputName} is already in contacts.`);
       return;
     }
